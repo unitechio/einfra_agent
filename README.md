@@ -5,9 +5,9 @@
 **Zero-Trust, Cross-Platform Infrastructure Agent**
 
 [![Go Version](https://img.shields.io/badge/Go-1.24.2-00ADD8?style=flat&logo=go)](https://go.dev/)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-blue?style=flat)](https://github.com/yourusername/einfra-agent)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-blue?style=flat)](https://github.com/einfra/einfra_agent)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-success?style=flat)](https://github.com/yourusername/einfra-agent)
+[![Build Status](https://img.shields.io/badge/Build-Passing-success?style=flat)](https://github.com/einfra/einfra_agent)
 
 [Features](#-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Security](#-security) • [Documentation](#-documentation)
 
@@ -192,8 +192,8 @@ graph LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/einfra-agent.git
-cd einfra-agent/agent
+git clone https://github.com/einfra/einfra_agent.git
+cd einfra_agent/agent
 
 # Install dependencies
 go mod download
@@ -211,7 +211,7 @@ go build -o bin/agent ./cmd/agent
 # Linux (x64)
 wget https://releases.einfra.io/agent/latest/agent-linux-amd64
 chmod +x agent-linux-amd64
-sudo mv agent-linux-amd64 /usr/local/bin/einfra-agent
+sudo mv agent-linux-amd64 /usr/local/bin/einfra_agent
 
 # Windows (x64)
 # Download from: https://releases.einfra.io/agent/latest/agent-windows-amd64.exe
@@ -236,7 +236,7 @@ export EINFRA_METRIC_INTERVAL=60      # seconds
 
 Alternatively, create a configuration file:
 
-**Linux**: `/var/lib/einfra-agent/config.json`
+**Linux**: `/var/lib/einfra_agent/config.json`
 **Windows**: `C:\ProgramData\einfra\agent\config.json`
 
 ```json
@@ -244,10 +244,10 @@ Alternatively, create a configuration file:
   "backend_url": "https://backend.example.com",
   "enroll_token": "your-enrollment-token-here",
   "log_level": "info",
-  "log_dir": "/var/log/einfra-agent",
-  "cert_path": "/var/lib/einfra-agent/certs/agent.crt",
-  "key_path": "/var/lib/einfra-agent/certs/agent.key",
-  "ca_cert_path": "/var/lib/einfra-agent/certs/ca.crt",
+  "log_dir": "/var/log/einfra_agent",
+  "cert_path": "/var/lib/einfra_agent/certs/agent.crt",
+  "key_path": "/var/lib/einfra_agent/certs/agent.key",
+  "ca_cert_path": "/var/lib/einfra_agent/certs/ca.crt",
   "heartbeat_interval": 30,
   "metric_interval": 60
 }
@@ -265,8 +265,8 @@ sudo ./bin/agent
 sudo ./bin/agent --config /path/to/config.json
 
 # Run as systemd service (recommended)
-sudo systemctl start einfra-agent
-sudo systemctl enable einfra-agent
+sudo systemctl start einfra_agent
+sudo systemctl enable einfra_agent
 ```
 
 #### Windows
@@ -280,7 +280,7 @@ sudo systemctl enable einfra-agent
 
 # Install as Windows Service (recommended)
 .\bin\agent.exe install
-Start-Service einfra-agent
+Start-Service einfra_agent
 ```
 
 ### First Run - Enrollment
@@ -433,7 +433,7 @@ time=2026-01-10T10:00:01Z level=debug message="Heartbeat sent"
 
 | Platform | Directory |
 |----------|-----------|
-| Linux | `/var/log/einfra-agent/` |
+| Linux | `/var/log/einfra_agent/` |
 | Windows | `C:\ProgramData\einfra\agent\logs\` |
 
 ### Log Levels
@@ -502,7 +502,7 @@ gosec ./...
 
 ### Systemd Service (Linux)
 
-Create `/etc/systemd/system/einfra-agent.service`:
+Create `/etc/systemd/system/einfra_agent.service`:
 
 ```ini
 [Unit]
@@ -512,7 +512,7 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/local/bin/einfra-agent
+ExecStart=/usr/local/bin/einfra_agent
 Restart=always
 RestartSec=10
 Environment="EINFRA_BACKEND_URL=https://backend.example.com"
@@ -524,9 +524,9 @@ WantedBy=multi-user.target
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable einfra-agent
-sudo systemctl start einfra-agent
-sudo systemctl status einfra-agent
+sudo systemctl enable einfra_agent
+sudo systemctl start einfra_agent
+sudo systemctl status einfra_agent
 ```
 
 ### Windows Service
@@ -536,10 +536,10 @@ sudo systemctl status einfra-agent
 .\agent.exe install
 
 # Start service
-Start-Service einfra-agent
+Start-Service einfra_agent
 
 # Check status
-Get-Service einfra-agent
+Get-Service einfra_agent
 
 # Uninstall service
 .\agent.exe uninstall
@@ -560,11 +560,11 @@ ENTRYPOINT ["/usr/local/bin/agent"]
 ```
 
 ```bash
-docker build -t einfra-agent:latest .
-docker run -d --name einfra-agent \
+docker build -t einfra_agent:latest .
+docker run -d --name einfra_agent \
   -e EINFRA_BACKEND_URL=https://backend.example.com \
   -e EINFRA_ENROLL_TOKEN=your-token \
-  einfra-agent:latest
+  einfra_agent:latest
 ```
 
 ---
@@ -619,15 +619,15 @@ This software is proprietary and confidential. Unauthorized copying, distributio
 
 ## 📞 Support
 
-- **Documentation**: [Wiki](https://github.com/yourusername/einfra-agent/wiki)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/einfra-agent/issues)
+- **Documentation**: [Wiki](https://github.com/einfra/einfra_agent/wiki)
+- **Issues**: [GitHub Issues](https://github.com/einfra/einfra_agent/issues)
 - **Security**: Report vulnerabilities to security@einfra.io
 
 ---
 
 <div align="center">
 
-**[⬆ Back to Top](#einfra-agent)**
+**[⬆ Back to Top](#einfra_agent)**
 
 Made with ❤️ by the EINFRA Team
 
