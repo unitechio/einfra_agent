@@ -30,14 +30,12 @@ var (
 func main() {
 	flag.Parse()
 
-	// Load configuration
 	cfg, err := config.Load(*configPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to load config: %v\n", err)
 		os.Exit(1)
 	}
 
-	// Initialize logger
 	if err := logger.Init(cfg.LogLevel, cfg.LogDir); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to initialize logger: %v\n", err)
 		os.Exit(1)
